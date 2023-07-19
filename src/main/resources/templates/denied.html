@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVC Security Access Denied Page</title>
+</head>
+
+<body>
+    <h2>MVC Security Access Denied Page</h2>
+    <hr>
+    <p> Welcome to Access Denied page</p>
+    <hr>
+    <a th:href="@{/}">Go Back</a><br>
+    <form action="#" th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout">
+    </form>
+</body>
+
+</html>
