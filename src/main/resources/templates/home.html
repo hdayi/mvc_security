@@ -15,10 +15,10 @@
     <p>User: <span sec:authentication="principal.username"></span> </p>
     <p>Roles: <span sec:authentication="principal.authorities"></span> </p>
     <hr>
-    <p>
+    <p sec:authorize="hasRole('MUDUR')">
         <a th:href="@{/leaders}">Leaders</a><br>
     </p>
-    <p>
+    <p sec:authorize="hasRole('MUMKUNMUDUR')">
         <a th:href="@{/systems}">Systems</a><br>
     </p>
     <form action="#" th:action="@{/logout}" method="post">
