@@ -24,7 +24,12 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(
-                configurer -> configurer.anyRequest().authenticated()).formLogin(
+                configurer -> configurer
+                        .requestMatchers("/").hasRole("PERSONEL")
+                        .requestMatchers("/leaders/**").hasRole("MUDUR")
+                        .requestMatchers("/systems/**").hasRole("MUMKUNMUDUR")
+                        .anyRequest().authenticated())
+                .formLogin(
                         form -> form.loginPage("/login")
                                 .loginProcessingUrl("/authenticate")
                                 .permitAll())

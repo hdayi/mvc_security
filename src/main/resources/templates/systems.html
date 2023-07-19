@@ -4,23 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MVC Security Home Page</title>
+    <title>MVC Security Systems Page</title>
 </head>
 
 <body>
-    <h2>MVC Security Home Page</h2>
+    <h2>MVC Security Systems Page</h2>
     <hr>
-    <p> Welcome to home page</p>
+    <p> Welcome to Systems page</p>
     <hr>
-    <p>User: <span sec:authentication="principal.username"></span> </p>
-    <p>Roles: <span sec:authentication="principal.authorities"></span> </p>
-    <hr>
-    <p>
-        <a th:href="@{/leaders}">Leaders</a><br>
-    </p>
-    <p>
-        <a th:href="@{/systems}">Systems</a><br>
-    </p>
+    <a th:href="@{/}">Go Back</a><br>
     <form action="#" th:action="@{/logout}" method="post">
         <input type="submit" value="Logout">
     </form>
