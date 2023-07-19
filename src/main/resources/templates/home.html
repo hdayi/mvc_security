@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,11 @@
 <body>
     <h2>MVC Security Home Page</h2>
     <hr>
-    Welcome to home page
+    <p> Welcome to home page</p>
+    <hr>
+    <form action="#" th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout">
+    </form>
 </body>
 
 </html>
