@@ -15,7 +15,7 @@
     <p>User: <span sec:authentication="principal.username"></span> </p>
     <p>Roles: <span sec:authentication="principal.authorities"></span> </p>
     <hr>
-    <p sec:authorize="hasRole('MUDUR')">
+    <p sec:authorize="hasAnyRole('MUDUR', 'PERSONEL')">
         <a th:href="@{/leaders}">Leaders</a><br>
     </p>
     <p sec:authorize="hasRole('MUMKUNMUDUR')">
