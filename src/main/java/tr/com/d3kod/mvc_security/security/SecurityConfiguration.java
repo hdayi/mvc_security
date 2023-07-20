@@ -14,16 +14,19 @@ public class SecurityConfiguration {
 
         @Bean
         public UserDetailsManager userDetailsManager(DataSource dataSource) {
-                return new JdbcUserDetailsManager(dataSource);
+                JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
+                userDetailsManager.setUsersByUsernameQuery("select user_id, pw, active from members where user_id=?");
+                userDetailsManager.setAuthoritiesByUsernameQuery("select user_id, role from roles where user_id=?");
+                return userDetailsManager;
         }
 
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                 http.authorizeHttpRequests(
                                 configurer -> configurer
-                                                .requestMatchers("/").hasRole("PERSONEL")
-                                                .requestMatchers("/leaders/**").hasRole("MUDUR")
-                                                .requestMatchers("/systems/**").hasRole("MUMKUNMUDUR")
+                                                .requestMatchers("/").hasRole("EMPLOYEE")
+                                                .requestMatchers("/leaders/**").hasRole("MANAGER")
+                                                .requestMatchers("/systems/**").hasRole("ADMIN")
                                                 .anyRequest().authenticated())
                                 .formLogin(
                                                 form -> form.loginPage("/login")
@@ -34,7 +37,17 @@ public class SecurityConfiguration {
                 return http.build();
         }
 }
+/*
+ * bu da sabit standart tablo ile olursa
+ * 
+ * @Bean
+ * public UserDetailsManager userDetailsManager(DataSource dataSource) {
+ * return new JdbcUserDetailsManager(dataSource);
+ * }
+ * 
+ */
 
+// asagisi hard coded
 // @Bean
 // public InMemoryUserDetailsManager userDetailsManager() {
 // UserDetails john =
